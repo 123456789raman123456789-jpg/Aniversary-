@@ -10,10 +10,29 @@
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  background: linear-gradient(135deg, #ff9a9e, #fbc2eb, #fad0c4);
   color: white;
   text-align: center;
   overflow-x: hidden;
+}
+
+/* Soft floating background hearts */
+.bg-hearts {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 2.5em;
+  opacity: 0.08;
+  animation: drift 10s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes drift {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
 }
 
 .section {
@@ -23,6 +42,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(4px);
 }
 
 .section.active {
@@ -36,7 +57,7 @@ body {
 }
 
 h1 {
-  font-size: 2.6em;
+  font-size: 2.7em;
   margin-bottom: 15px;
 }
 
@@ -89,14 +110,14 @@ button {
 .gallery img:nth-child(4){animation-delay:3.5s}
 
 @keyframes photoFade {
-  from { opacity: 0; transform: scale(0.9); }
+  from { opacity: 0; transform: scale(0.92); }
   to { opacity: 1; transform: scale(1); }
 }
 
-/* Panda hug */
+/* Panda hug animation */
 .pandas {
   font-size: 4em;
-  margin-top: 20px;
+  margin-top: 25px;
   animation: hug 3s ease-in-out infinite;
 }
 
@@ -108,13 +129,15 @@ button {
 
 /* Laptop enhancement */
 @media (min-width: 768px) {
-  h1 { font-size: 3.2em; }
+  h1 { font-size: 3.3em; }
   p { font-size: 1.3em; }
 }
 </style>
 </head>
 
 <body>
+
+<div class="bg-hearts">💗 💕 💖 💞 💓</div>
 
 <audio id="music" loop>
   <source src="song.mp3" type="audio/mpeg">
@@ -140,6 +163,9 @@ button {
 
 <!-- 💌 LETTER -->
 <div class="section" id="letter">
+  <div style="font-size:1.5em; opacity:0.6; margin-bottom:20px;">
+    ✦ ✦ ✦
+  </div>
   <p>
     You don’t have to be strong with me.<br>
     You don’t have to pretend that everything is okay.<br><br>
@@ -179,6 +205,9 @@ button {
     and in the days that take everything out of you.
   </p>
   <div class="pandas">🐼🐼</div>
+  <p style="margin-top:25px; font-size:0.95em; opacity:0.7;">
+    Always with you.
+  </p>
 </div>
 
 <script>
