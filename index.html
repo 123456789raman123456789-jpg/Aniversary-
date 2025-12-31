@@ -2,152 +2,201 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Anniversary 💕</title>
+<title>This is for you 🤍</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   color: white;
   text-align: center;
+  overflow-x: hidden;
 }
 
-.container {
-  padding: 50px 20px;
+.section {
+  min-height: 100vh;
+  padding: 60px 20px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.section.active {
+  display: flex;
+  animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 h1 {
-  font-size: 2.8em;
+  font-size: 2.6em;
+  margin-bottom: 15px;
 }
 
 p {
+  max-width: 650px;
   font-size: 1.2em;
-  max-width: 600px;
-  margin: 20px auto;
-  line-height: 1.7;
+  line-height: 1.8;
+}
+
+button {
+  margin-top: 30px;
+  padding: 12px 28px;
+  font-size: 1em;
+  border: none;
+  border-radius: 30px;
+  background: white;
+  color: #ff5e78;
+  cursor: pointer;
 }
 
 .counter {
   margin-top: 20px;
   font-size: 1.5em;
   background: rgba(255,255,255,0.25);
-  padding: 12px 18px;
-  border-radius: 15px;
-  display: inline-block;
+  padding: 14px 20px;
+  border-radius: 16px;
 }
 
-.hearts {
-  font-size: 2em;
-  margin-top: 20px;
-  animation: float 2.5s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0); }
-}
-
+/* Gallery */
 .gallery {
   display: flex;
   gap: 18px;
-  justify-content: center;
-  margin-top: 35px;
+  margin-top: 30px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .gallery img {
-  width: 140px;
-  height: 140px;
+  width: 150px;
+  height: 150px;
   border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+  opacity: 0;
+  animation: photoFade 1s ease forwards;
 }
 
-button {
-  margin-top: 25px;
-  padding: 12px 22px;
-  font-size: 1em;
-  border: none;
-  border-radius: 25px;
-  background: white;
-  color: #ff5e78;
-  cursor: pointer;
+.gallery img:nth-child(1){animation-delay:0.5s}
+.gallery img:nth-child(2){animation-delay:1.5s}
+.gallery img:nth-child(3){animation-delay:2.5s}
+.gallery img:nth-child(4){animation-delay:3.5s}
+
+@keyframes photoFade {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-.secret {
-  display: none;
+/* Panda hug */
+.pandas {
+  font-size: 4em;
   margin-top: 20px;
-  font-size: 1.2em;
-  background: rgba(255,255,255,0.25);
-  padding: 15px;
-  border-radius: 15px;
+  animation: hug 3s ease-in-out infinite;
+}
+
+@keyframes hug {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 /* Laptop enhancement */
 @media (min-width: 768px) {
-  h1 { font-size: 3.4em; }
+  h1 { font-size: 3.2em; }
   p { font-size: 1.3em; }
-  .gallery img {
-    width: 180px;
-    height: 180px;
-  }
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 Background Music -->
 <audio id="music" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio>
 
-<div class="container">
+<!-- 🌷 INTRO -->
+<div class="section active" id="intro">
+  <h1>This is for you 🐼</h1>
+  <p>Open it whenever you feel ready.</p>
+  <button onclick="nextSection('anniversary')">Open 🤍</button>
+</div>
+
+<!-- 💕 ANNIVERSARY -->
+<div class="section" id="anniversary">
   <h1>Happy Anniversary 💕</h1>
-
   <p>
-    Even though miles keep us apart 🌍<br>
-    my heart feels closer to you every day 💖<br>
-    Distance means nothing when love means everything 🫶
+    Another year with you.<br>
+    Not just the happy moments — all of it.
   </p>
-
   <div class="counter" id="counter"></div>
+  <button onclick="playAndNext()">Continue</button>
+</div>
 
-  <div class="hearts">💖 💕 💗 💓 💞</div>
+<!-- 💌 LETTER -->
+<div class="section" id="letter">
+  <p>
+    You don’t have to be strong with me.<br>
+    You don’t have to pretend that everything is okay.<br><br>
 
-  <button onclick="document.getElementById('music').play()">
-    Play our song 🎵
-  </button>
+    I’m here when things feel light,<br>
+    and I’m here when they feel heavy.<br><br>
 
-  <!-- 📸 Photos -->
+    Not just for the happy days,<br>
+    but for the quiet ones,<br>
+    the messy ones,<br>
+    the days you don’t know what to say.<br><br>
+
+    You’re not alone in this.<br>
+    I’m right here. 🐼
+  </p>
+  <button onclick="nextSection('photos')">Next</button>
+</div>
+
+<!-- 🖼️ PHOTOS -->
+<div class="section" id="photos">
+  <h1>Us 🤍</h1>
   <div class="gallery">
     <img src="photo1.jpg">
     <img src="photo2.jpg">
     <img src="photo3.jpg">
     <img src="photo4.jpg">
   </div>
+  <button onclick="nextSection('final')">One last thing</button>
+</div>
 
-  <!-- 🔐 Secret Message -->
-  <button onclick="document.getElementById('secret').style.display='block'">
-    Tap for a secret 💌
-  </button>
-
-  <div class="secret" id="secret">
-    No matter how far we are,<br>
-    I choose you — today, tomorrow, always ❤️
-  </div>
+<!-- 🐼 FINAL -->
+<div class="section" id="final">
+  <p>
+    No matter how heavy life feels,<br>
+    you don’t walk through it alone.<br><br>
+    I’m here — in the good days,<br>
+    and in the days that take everything out of you.
+  </p>
+  <div class="pandas">🐼🐼</div>
 </div>
 
 <script>
+function nextSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function playAndNext() {
+  document.getElementById('music').play();
+  nextSection('letter');
+}
+
 const startDate = new Date("2025-01-01");
 const today = new Date();
-const diffTime = Math.abs(today - startDate);
-const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-
+const diffDays = Math.floor((today - startDate) / (1000 * 60 * 60 * 24));
 document.getElementById("counter").innerHTML =
-  `We’ve been together for <b>${diffDays}</b> days 🥰`;
+  `We’ve been together for <b>${diffDays}</b> days`;
 </script>
 
 </body>
