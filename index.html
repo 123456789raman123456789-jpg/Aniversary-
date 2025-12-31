@@ -2,57 +2,146 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Happy Anniversary ❤️</title>
+<title>Happy Anniversary 💕</title>
+
 <style>
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  font-family: "Segoe UI", sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
   color: white;
   text-align: center;
 }
+
 .container {
-  padding: 40px 20px;
+  padding: 50px 20px;
 }
+
 h1 {
-  font-size: 2.5em;
+  font-size: 2.8em;
 }
+
 p {
   font-size: 1.2em;
-  max-width: 500px;
-  margin: auto;
+  max-width: 600px;
+  margin: 20px auto;
+  line-height: 1.7;
 }
+
 .counter {
-  font-size: 1.5em;
   margin-top: 20px;
+  font-size: 1.5em;
+  background: rgba(255,255,255,0.25);
+  padding: 12px 18px;
+  border-radius: 15px;
+  display: inline-block;
 }
-.heart {
+
+.hearts {
   font-size: 2em;
-  animation: pulse 1s infinite;
+  margin-top: 20px;
+  animation: float 2.5s ease-in-out infinite;
 }
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
+
+.gallery {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 35px;
+  flex-wrap: wrap;
+}
+
+.gallery img {
+  width: 140px;
+  height: 140px;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.35);
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px 22px;
+  font-size: 1em;
+  border: none;
+  border-radius: 25px;
+  background: white;
+  color: #ff5e78;
+  cursor: pointer;
+}
+
+.secret {
+  display: none;
+  margin-top: 20px;
+  font-size: 1.2em;
+  background: rgba(255,255,255,0.25);
+  padding: 15px;
+  border-radius: 15px;
+}
+
+/* Laptop enhancement */
+@media (min-width: 768px) {
+  h1 { font-size: 3.4em; }
+  p { font-size: 1.3em; }
+  .gallery img {
+    width: 180px;
+    height: 180px;
+  }
 }
 </style>
 </head>
 
 <body>
+
+<!-- 🎵 Background Music -->
+<audio id="music" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
-  <h1>Happy Anniversary ❤️</h1>
+  <h1>Happy Anniversary 💕</h1>
+
   <p>
-    Even though miles separate us,  
-    my heart chooses you every single day.  
-    Thank you for being my constant. 💕
+    Even though miles keep us apart 🌍<br>
+    my heart feels closer to you every day 💖<br>
+    Distance means nothing when love means everything 🫶
   </p>
 
   <div class="counter" id="counter"></div>
-  <div class="heart">💖</div>
+
+  <div class="hearts">💖 💕 💗 💓 💞</div>
+
+  <button onclick="document.getElementById('music').play()">
+    Play our song 🎵
+  </button>
+
+  <!-- 📸 Photos -->
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+
+  <!-- 🔐 Secret Message -->
+  <button onclick="document.getElementById('secret').style.display='block'">
+    Tap for a secret 💌
+  </button>
+
+  <div class="secret" id="secret">
+    No matter how far we are,<br>
+    I choose you — today, tomorrow, always ❤️
+  </div>
 </div>
 
 <script>
-const startDate = new Date("2023-02-14"); // CHANGE THIS DATE
+const startDate = new Date("2025-01-01");
 const today = new Date();
 const diffTime = Math.abs(today - startDate);
 const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
