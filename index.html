@@ -5,9 +5,7 @@
 <title>Always with you 🤍</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
@@ -34,11 +32,8 @@ body {
   min-height: 100vh;
   padding: 20px;
   display: none;
-
-  display: flex;
   align-items: center;
   justify-content: center;
-
   position: relative;
   z-index: 1;
 }
@@ -164,7 +159,7 @@ button {
     <h1>This is for you 🐼</h1>
     <p>Open it whenever you feel ready.</p>
     <div class="divider">✦ ✦ ✦</div>
-    <button onclick="next('anniversary')">Open 🤍</button>
+    <button onclick="goToSection('anniversary')">Open 🤍</button>
   </div>
 </div>
 
@@ -177,7 +172,7 @@ button {
       Not just the happy moments — all of it.
     </p>
     <div class="counter" id="counter"></div>
-    <button onclick="playAndNext()">Continue</button>
+    <button onclick="playAndGo()">Continue</button>
   </div>
 </div>
 
@@ -200,7 +195,7 @@ button {
       You’re not alone in this.<br>
       I’m right here. 🐼
     </p>
-    <button onclick="next('photos')">Next</button>
+    <button onclick="goToSection('photos')">Next</button>
   </div>
 </div>
 
@@ -214,7 +209,7 @@ button {
       <img src="photo3.jpg">
       <img src="photo4.jpg">
     </div>
-    <button onclick="next('final')">One last thing</button>
+    <button onclick="goToSection('final')">One last thing</button>
   </div>
 </div>
 
@@ -234,15 +229,15 @@ button {
 </div>
 
 <script>
-function next(id) {
+function goToSection(id) {
   document.querySelectorAll('.section')
     .forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-function playAndNext() {
+function playAndGo() {
   document.getElementById('music').play();
-  next('letter');
+  goToSection('letter');
 }
 
 const startDate = new Date("2025-01-01");
